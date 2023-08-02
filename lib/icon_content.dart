@@ -19,7 +19,7 @@ class IconWidget extends StatelessWidget {
       children: [
         Icon(
           icon,
-          size: 40,
+          size: 80,
         ),
         const SizedBox(
           height: 15,
