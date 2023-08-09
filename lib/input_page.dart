@@ -18,6 +18,7 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender selectedGender = Gender.male;
   int height = 180;
+  int weight = 60;
 
   @override
   Widget build(BuildContext context) {
@@ -92,12 +93,14 @@ class _InputPageState extends State<InputPage> {
                   ),
                   SliderTheme(
                     data: SliderTheme.of(context).copyWith(
-                      inactiveTrackColor: Color(0xFF8D8E98),
+                      inactiveTrackColor: const Color(0xFF8D8E98),
                       activeTrackColor: Colors.white,
-                      thumbColor:  const Color(0xFFEB1555),
+                      thumbColor: const Color(0xFFEB1555),
                       overlayColor: const Color(0x29EB1555),
-                      thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 15),
-                      overlayShape: const RoundSliderOverlayShape(overlayRadius: 30),
+                      thumbShape:
+                          const RoundSliderThumbShape(enabledThumbRadius: 15),
+                      overlayShape:
+                          const RoundSliderOverlayShape(overlayRadius: 30),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -124,6 +127,43 @@ class _InputPageState extends State<InputPage> {
                 child: ReusableCard(
                   colour: kActiveCardColor,
                   onPress: () {},
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'Weight',
+                        style: kLabelTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: kNumberTextStyle,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          FloatingActionButton(
+                            onPressed: () {},
+                            backgroundColor: const Color(0xFF4C4F5E),
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          FloatingActionButton(
+                            onPressed: () {},
+                            backgroundColor: const Color(0xFF4C4F5E),
+                            child: const Icon(
+                              Icons.add,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
                 ),
               ),
               Expanded(
@@ -143,5 +183,14 @@ class _InputPageState extends State<InputPage> {
         ],
       ),
     );
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  const RoundIconButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Placeholder();
   }
 }
