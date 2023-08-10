@@ -42,3 +42,9 @@ const bodyTextStyle = TextStyle(
     fontSize: 22.0,
     fontWeight: FontWeight.bold
 );
+
+const bmiRangeTextStyle = TextStyle(
+    color: Color(0xFF545262),
+    fontSize: 20.0,
+    fontWeight: FontWeight.bold
+);
