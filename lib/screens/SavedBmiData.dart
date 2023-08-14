@@ -8,7 +8,7 @@ class SavedBmiData extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Saved BMI Data'),
+        title: const Text('Stored BMI Data'),
         centerTitle: true,
         backgroundColor: kInactiveCardColor,
         elevation: 0.0,

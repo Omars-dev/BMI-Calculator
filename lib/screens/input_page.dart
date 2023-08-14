@@ -65,7 +65,7 @@ class _InputPageState extends State<InputPage> {
               ListTile(
                 leading: const Icon(FontAwesomeIcons.cloud),
                 title: const Text(
-                  'Saved BMI Data',
+                  'Stored BMI Data',
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
