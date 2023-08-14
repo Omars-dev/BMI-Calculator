@@ -1,5 +1,6 @@
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
+import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,6 +31,70 @@ class _InputPageState extends State<InputPage> {
     return Scaffold(
       appBar: AppBar(
         title: const Center(child: Text("BMI Calculator")),
+      ),
+      drawer: Drawer(
+        child: Container(
+          color: kInactiveCardColor,
+          child: ListView(
+            children: [
+              const DrawerHeader(
+                curve: Curves.bounceInOut,
+                decoration: BoxDecoration(
+                  color: kActiveCardColor,
+                ),
+                child: Center(
+                  child: Text(
+                    'BMI',
+                    style: TextStyle(fontSize: 35),
+                  ),
+                ),
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.home),
+                title: const Text(
+                  'Home',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.circleInfo),
+                title: const Text(
+                  'More Apps',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.message),
+                title: const Text(
+                  'Need Help',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.star),
+                title: const Text(
+                  'Rate on Google Play',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  SnackBar(content: Text('Rate on Google Play'),);
+                },
+              ),
+            ],
+          ),
+        ),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
