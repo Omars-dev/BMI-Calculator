@@ -1,6 +1,7 @@
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/main.dart';
+import 'package:bmi_calculator/screens/SavedBmiData.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -30,7 +31,8 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Center(child: Text("BMI Calculator")),
+        title: const Text("BMI Calculator"),
+        centerTitle: true,
       ),
       drawer: Drawer(
         child: Container(
@@ -58,6 +60,17 @@ class _InputPageState extends State<InputPage> {
                 onTap: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.cloud),
+                title: const Text(
+                  'Saved BMI Data',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => const SavedBmiData()));
                 },
               ),
               ListTile(
@@ -89,7 +102,7 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  SnackBar(content: Text('Rate on Google Play'),);
+                  const SnackBar(content: Text('Rate on Google Play'),);
                 },
               ),
             ],
