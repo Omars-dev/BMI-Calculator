@@ -1,8 +1,9 @@
 import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/main.dart';
-import 'package:bmi_calculator/screens/SavedBmiData.dart';
+import 'package:bmi_calculator/screens/saved_bmi_data.dart';
 import 'package:bmi_calculator/screens/results_page.dart';
+import 'package:bmi_calculator/screens/unit_converter.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:bmi_calculator/components/bottom_button.dart';
@@ -47,7 +48,7 @@ class _InputPageState extends State<InputPage> {
                 child: Center(
                   child: Text(
                     'BMI',
-                    style: TextStyle(fontSize: 35),
+                    style: TextStyle(fontSize: 35,color: kGreenTextColor,fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -60,6 +61,17 @@ class _InputPageState extends State<InputPage> {
                 onTap: () {
                   Navigator.of(context)
                       .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                },
+              ),
+              ListTile(
+                leading: const Icon(FontAwesomeIcons.unity),
+                title: const Text(
+                  'Unit Converter',
+                  style: TextStyle(fontSize: 20),
+                ),
+                onTap: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (context) => UnitConverterScreen()));
                 },
               ),
               ListTile(
