@@ -12,7 +12,7 @@ class BottomButton extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        color: kBottomContainerColor,
+        color: kGreenTextColor,
         margin: const EdgeInsets.only(top: 10.0),
         width: double.infinity,
         height: kBottomContainerHeight,

@@ -1,38 +1,72 @@
-import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:flutter/material.dart';
+import 'unit/history_page.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UnitConverterApp extends StatelessWidget {
-  const UnitConverterApp({super.key});
+
+class UnitConverter extends StatefulWidget {
+  @override
+  _UnitConverterState createState() => _UnitConverterState();
+}
+
+class _UnitConverterState extends State<UnitConverter> {
+
+  late SharedPreferences _prefs;
 
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Unit Converter',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-    );
+  void initState() {
+    super.initState();
+    loadHistory();
   }
-}
 
-class UnitConverterScreen extends StatefulWidget {
-  const UnitConverterScreen({super.key});
+  void loadHistory() async {
+    _prefs = await SharedPreferences.getInstance();
+    if (_prefs.containsKey('history')) {
+      final historyString = _prefs.getString('history')!;
+      setState(() {
+        history = historyString.split(';').map((value) => double.parse(value)).toList();
+      });
+    }
+  }
 
-  @override
-  _UnitConverterScreenState createState() => _UnitConverterScreenState();
-}
 
-class _UnitConverterScreenState extends State<UnitConverterScreen> {
+  void saveHistory() {
+    final historyString = history.join(';');
+    _prefs.setString('history', historyString);
+  }
+
+  void clearHistory() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.remove('history');
+    setState(() {
+      history.clear();
+    });
+  }
+
+
   double feetValue = 0;
   double cmValue = 0;
+  List<double> history = [];
 
   void convertFeetToCm(double feet) {
     setState(() {
       feetValue = feet;
       cmValue = feet * 30.48;
+      history.add(cmValue);
+      saveHistory(); // Call saveHistory here
     });
   }
+
+
+  void navigateToHistoryPage() {
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) => HistoryPage(history: history, prefs: _prefs),
+      ),
+    );
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -41,56 +75,66 @@ class _UnitConverterScreenState extends State<UnitConverterScreen> {
         title: const Text('Unit Converter'),
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Expanded(
-              flex: 3,
-              child: ReusableCard(
-                onPress: () {},
-                colour: kActiveCardColor,
-                cardChild: Column(
-                  children: [
-                    TextField(
-                      keyboardType: TextInputType.number,
-                      decoration: const InputDecoration(
-                        labelText: 'Enter your Size in Feet',
-                        labelStyle: TextStyle(
-                          // Set your desired font style properties here
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
-                        fillColor: kInactiveCardColor,
-                        filled: true,
-                        border: InputBorder.none,
-                      ),
-                      onChanged: (value) {
-                        double feet = double.tryParse(value) ?? 0;
-                        convertFeetToCm(feet);
+      body: Column(
+        children: [
+          Container(
+            padding: const EdgeInsets.all(16),
+            color: kActiveCardColor,
+            child: Column(
+              children: [
+                TextField(
+                  keyboardType: TextInputType.number,
+                  onChanged: (value) {
+                    convertFeetToCm(double.parse(value));
+                  },
+                  decoration: const InputDecoration(
+                    labelText: 'Enter Height in Feet',
+                    border: OutlineInputBorder(
+                      borderSide: BorderSide(color: kGreenTextColor), // Change this color
+                    ),
+                    // enabledBorder: OutlineInputBorder(
+                    //   borderSide: BorderSide(color: kGreenTextColor),
+                    // ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: kGreenTextColor), // Change this color
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                Text('Converted Value: $cmValue cm'),
+              ],
+            ),
+          ),
+          Expanded(
+            child: Container(
+              color: kInactiveCardColor,
+              padding: const EdgeInsets.all(16),
+              child: Column(
+                children: [
+                  ElevatedButton(
+                    onPressed: navigateToHistoryPage,
+                    style: ElevatedButton.styleFrom(
+                      primary: kGreenTextColor,
+                    ),
+                    child: const Text('View History', style: TextStyle(fontWeight: FontWeight.w600),),
+                  ),
+                  const SizedBox(height: 16),
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: history.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title:
+                          Text('Conversion ${index + 1}: ${history[index]} cm'),
+                        );
                       },
                     ),
-                    const SizedBox(height: 16),
-                    Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: Text(
-                        'Centimeters: $cmValue',
-                        style: const TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 26,
-                            color: kGreenTextColor),
-                        textAlign: TextAlign.center,
-                      ),
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

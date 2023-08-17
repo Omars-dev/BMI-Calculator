@@ -48,7 +48,10 @@ class _InputPageState extends State<InputPage> {
                 child: Center(
                   child: Text(
                     'BMI',
-                    style: TextStyle(fontSize: 35,color: kGreenTextColor,fontWeight: FontWeight.bold),
+                    style: TextStyle(
+                        fontSize: 35,
+                        color: kGreenTextColor,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
               ),
@@ -59,19 +62,19 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyApp()));
                 },
               ),
               ListTile(
-                leading: const Icon(FontAwesomeIcons.unity),
+                leading: const Icon(FontAwesomeIcons.weightScale),
                 title: const Text(
                   'Unit Converter',
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => UnitConverterScreen()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => UnitConverter()));
                 },
               ),
               ListTile(
@@ -81,8 +84,8 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const SavedBmiData()));
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const SavedBmiData()));
                 },
               ),
               ListTile(
@@ -92,8 +95,8 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyApp()));
                 },
               ),
               ListTile(
@@ -103,8 +106,8 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (context) => const MyApp()));
+                  Navigator.of(context).push(
+                      MaterialPageRoute(builder: (context) => const MyApp()));
                 },
               ),
               ListTile(
@@ -114,7 +117,9 @@ class _InputPageState extends State<InputPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onTap: () {
-                  const SnackBar(content: Text('Rate on Google Play'),);
+                  const SnackBar(
+                    content: Text('Rate on Google Play'),
+                  );
                 },
               ),
             ],
@@ -138,7 +143,7 @@ class _InputPageState extends State<InputPage> {
                       ? kActiveCardColor
                       : kInactiveCardColor,
                   cardChild: const IconWidget(
-                    icon: FontAwesomeIcons.person,
+                    icon: FontAwesomeIcons.personDigging,
                     label: 'MALE',
                   ),
                 ),
@@ -165,11 +170,26 @@ class _InputPageState extends State<InputPage> {
             child: ReusableCard(
               colour: kActiveCardColor,
               cardChild: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  const Text(
-                    "HEIGHT",
-                    style: kLabelTextStyle,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "HEIGHT",
+                        style: kLabelTextStyle,
+                      ),
+                      const SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: (){
+                          _displayBottomSheet(BuildContext, context);
+                        },
+                        child: const Icon(
+                          FontAwesomeIcons.circleInfo,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ],
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -190,8 +210,8 @@ class _InputPageState extends State<InputPage> {
                     data: SliderTheme.of(context).copyWith(
                       inactiveTrackColor: const Color(0xFF8D8E98),
                       activeTrackColor: Colors.white,
-                      thumbColor: const Color(0xFFEB1555),
-                      overlayColor: const Color(0x29EB1555),
+                      thumbColor: kGreenTextColor,
+                      overlayColor: const Color(0x2924D876),
                       thumbShape:
                           const RoundSliderThumbShape(enabledThumbRadius: 15),
                       overlayShape:
@@ -324,4 +344,73 @@ class _InputPageState extends State<InputPage> {
       ),
     );
   }
+}
+
+Future _displayBottomSheet(BuildContext, context){
+  return showModalBottomSheet(
+      context: context,
+      backgroundColor: kGreenTextColor,
+      barrierColor: Colors.black87.withOpacity(0.5),
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(30))),
+      builder: (context) => Container(
+        height: 300,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: [
+            Container(
+              height: 100,
+              width: 100,
+              decoration: BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(50)
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(12.0),
+                child: Image.asset('assets/icons/height.png'),
+              ),
+            ),
+            const Text('Dont Know Your Height in CM', style: TextStyle(
+              fontSize: 24,
+              fontWeight: FontWeight.w700,
+              color: Colors.black
+            ),),
+            const Text('Convert your height Feet 2 CM Just one click',style: TextStyle(
+              fontSize: 16,
+              color: Colors.white,
+              fontWeight: FontWeight.w500
+            ),),
+            GestureDetector(
+              onTap: (){
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => UnitConverter(),
+                  ),
+                );
+              },
+              child: Container(
+                width: 220,
+                height: 45,
+                decoration: BoxDecoration(
+                    gradient: const LinearGradient(colors: [
+                      Color(0xFFff8c04),
+                      Color(0xFFffbd1e)
+                    ]),
+                    borderRadius: BorderRadius.circular(20)
+                ),
+                child: const Center(
+                  child: Text(
+                    'Convert Height in CM',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white),
+                  ),
+                ),
+              ),
+            )
+          ],
+        ),
+      ),
+  );
 }
