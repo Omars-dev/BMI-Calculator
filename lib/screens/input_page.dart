@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/components/icon_content.dart';
 import 'package:bmi_calculator/components/round_icon_button.dart';
 import 'package:bmi_calculator/main.dart';
 import 'package:bmi_calculator/screens/saved_bmi_data.dart';
@@ -10,6 +9,7 @@ import 'package:bmi_calculator/components/bottom_button.dart';
 import 'package:bmi_calculator/components/reusable_card.dart';
 import 'package:bmi_calculator/constants.dart';
 import 'package:bmi_calculator/calculator_brain.dart';
+import 'package:lottie/lottie.dart';
 
 enum Gender {
   male,
@@ -56,7 +56,7 @@ class _InputPageState extends State<InputPage> {
                 ),
               ),
               ListTile(
-                leading: const Icon(FontAwesomeIcons.home),
+                leading: const Icon(FontAwesomeIcons.house),
                 title: const Text(
                   'Home',
                   style: TextStyle(fontSize: 20),
@@ -142,9 +142,11 @@ class _InputPageState extends State<InputPage> {
                   colour: selectedGender == Gender.male
                       ? kActiveCardColor
                       : kInactiveCardColor,
-                  cardChild: const IconWidget(
-                    icon: FontAwesomeIcons.personDigging,
-                    label: 'MALE',
+                  cardChild: Column(
+                    children: [
+                      Lottie.asset('assets/lottie/animation_llf0x8r8.json'),
+                      const Text('MALE',style: kLabelTextStyle),
+                    ],
                   ),
                 ),
               ),
@@ -158,9 +160,11 @@ class _InputPageState extends State<InputPage> {
                   colour: selectedGender == Gender.female
                       ? kActiveCardColor
                       : kInactiveCardColor,
-                  cardChild: const IconWidget(
-                    icon: FontAwesomeIcons.personDress,
-                    label: 'FEMALE',
+                  cardChild: Column(
+                    children: [
+                      Lottie.asset('assets/lottie/animation_llezinhc.json'),
+                      const Text('FEMALE',style: kLabelTextStyle),
+                    ],
                   ),
                 ),
               ),
