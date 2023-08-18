@@ -144,7 +144,7 @@ class _InputPageState extends State<InputPage> {
                       : kInactiveCardColor,
                   cardChild: Column(
                     children: [
-                      Lottie.asset('assets/lottie/animation_llf0x8r8.json'),
+                      Lottie.asset('assets/lottie/animation_llf0x8r8.json',width: 120,height: 120),
                       const Text('MALE',style: kLabelTextStyle),
                     ],
                   ),
@@ -162,7 +162,7 @@ class _InputPageState extends State<InputPage> {
                       : kInactiveCardColor,
                   cardChild: Column(
                     children: [
-                      Lottie.asset('assets/lottie/animation_llezinhc.json'),
+                      Lottie.asset('assets/lottie/animation_llezinhc.json', width: 120, height: 120),
                       const Text('FEMALE',style: kLabelTextStyle),
                     ],
                   ),
