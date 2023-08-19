@@ -61,26 +61,26 @@ class ResultsPage extends StatelessWidget {
                       style: bodyTextStyle,
                       textAlign: TextAlign.center,
                     ),
-                    MaterialButton(
-                      onPressed: () {
-                        Navigator.of(context)
-                            .push(MaterialPageRoute(builder: (context) => const SavedBmiData()));
-                      },
-                      color: kInactiveCardColor,
-                      elevation: 3,
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 30, vertical: 12),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(50.0),
-                      ),
-                      child: const Text(
-                        'Save BMI',
-                        style: TextStyle(
-                            fontSize: 18,
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF545262)),
-                      ),
-                    ),
+                    // MaterialButton(
+                    //   onPressed: () {
+                    //     Navigator.of(context)
+                    //         .push(MaterialPageRoute(builder: (context) => const SavedBmiData()));
+                    //   },
+                    //   color: kInactiveCardColor,
+                    //   elevation: 3,
+                    //   padding: const EdgeInsets.symmetric(
+                    //       horizontal: 30, vertical: 12),
+                    //   shape: RoundedRectangleBorder(
+                    //     borderRadius: BorderRadius.circular(50.0),
+                    //   ),
+                    //   child: const Text(
+                    //     'Save BMI',
+                    //     style: TextStyle(
+                    //         fontSize: 18,
+                    //         fontWeight: FontWeight.w600,
+                    //         color: Color(0xFF545262)),
+                    //   ),
+                    // ),
                   ],
                 ),
               ),

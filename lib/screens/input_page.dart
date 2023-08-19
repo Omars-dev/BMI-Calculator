@@ -78,17 +78,6 @@ class _InputPageState extends State<InputPage> {
                 },
               ),
               ListTile(
-                leading: const Icon(FontAwesomeIcons.cloud),
-                title: const Text(
-                  'Stored BMI Data',
-                  style: TextStyle(fontSize: 20),
-                ),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const SavedBmiData()));
-                },
-              ),
-              ListTile(
                 leading: const Icon(FontAwesomeIcons.circleInfo),
                 title: const Text(
                   'More Apps',
