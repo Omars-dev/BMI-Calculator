@@ -1,8 +1,7 @@
 import 'dart:math';
 
 class CalculatorBrain {
-  CalculatorBrain({required this.height, required this.weight})
-      : _bmi = null;
+  CalculatorBrain({required this.height, required this.weight}) : _bmi = null;
 
   final int height;
   final int weight;
@@ -18,7 +17,7 @@ class CalculatorBrain {
     if (_bmi! >= 25) {
       return 'Overweight';
     } else if (_bmi! > 18.5) {
-      return 'Normal';
+      return 'Normal | OK';
     } else {
       return 'Underweight';
     }
